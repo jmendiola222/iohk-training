@@ -1,0 +1,33 @@
+<head>
+  <title>Invoices</title>
+</head>
+
+<body>
+    <div class="col-md-12">
+        <div class="col-md-offset-2 col-md-8">
+            <h1>Invoices</h1>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Invoice Nr.</th>
+                        <th>Total</th>
+                        <th>CreatedAt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each invoices}}
+                    <tr>
+                        {{> invoice}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+<template name="invoice">
+  <td>{{invoiceNumber}}</td>
+  <td>{{total}}</td>
+  <td>{{formatDate createdAt}}</td>
+</template>
