@@ -1,17 +1,31 @@
 <head>
   <title>Invoices</title>
 </head>
-
 <body>
     <div class="col-md-12">
         <div class="col-md-offset-2 col-md-8">
             <h1>Invoices</h1>
-            <table class="table table-striped table-bordered">
+            <p class="filters">
+                <div class="btn-group">
+                    {{#each filters.createdAt.options}}
+                        <button type="button" class="btn btn-default {{#if isFilterSelected this }}active{{/if}}"
+                                value="{{ this }}">{{ this }}</button>
+                    {{/each}}
+                </div>
+            </p>
+            <table class="table table-striped table-bordered table-sortable">
                 <thead>
                     <tr>
-                        <th>Invoice Nr.</th>
-                        <th>Total</th>
-                        <th>CreatedAt</th>
+                    {{#each columns}}
+                        <th>
+                            <span>{{this.name}}</span>
+                            {{#if isSortable this }}
+                            <a href="#">
+                                <i id="{{this.key}}" class="fa fa-fw fa-sort{{ getSortDirection this }}"></i>
+                            </a>
+                            {{/if}}
+                        </th>
+                    {{/each}}
                     </tr>
                 </thead>
                 <tbody>
@@ -31,3 +45,4 @@
   <td>{{total}}</td>
   <td>{{formatDate createdAt}}</td>
 </template>
+
